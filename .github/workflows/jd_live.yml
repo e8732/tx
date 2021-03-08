@@ -6,11 +6,11 @@ name: jd_live
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10-20/5 12 * * *'
+    - cron: '5 12,15,17 * * *'
   watch:
     types: started
   repository_dispatch:
-    types: jd_live
+    types: live
 jobs:
   build:
 
@@ -20,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: e8732/tx 
+          repository: danwangshimoluo/JdScripts
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -35,7 +35,7 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【京东】'
+      - name: '运行 【京东直播】'
         run: |
           node jd_live.js
         env:
